@@ -1,0 +1,5 @@
+# all the jupyter notebooks
+*.ipynb
+
+.vscode/
+deepseek

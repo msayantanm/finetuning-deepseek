@@ -1,0 +1,10 @@
+# Core
+torch>=2.2.0      # CUDA 12 builds are auto‑selected by pip
+transformers>=4.41.0
+datasets>=2.19.0
+peft>=0.15.0      # Official PEFT / LoRA implementation
+accelerate>=0.29.0
+bitsandbytes>=0.43 # (optional but enables 4‑bit loading on 1×24GB GPU)
+
+# CLI prettiness
+tqdm
