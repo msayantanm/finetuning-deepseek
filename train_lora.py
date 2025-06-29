@@ -7,6 +7,7 @@ from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 
 CUDA_AVAILABLE = torch.cuda.is_available()
 DEVICE = "cuda" if CUDA_AVAILABLE else "cpu"
+print(f"device: {DEVICE}, cuda_available: {CUDA_AVAILABLE}")
 
 def parse():
     p = argparse.ArgumentParser()
