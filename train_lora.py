@@ -10,6 +10,7 @@ DEVICE = "cuda" if CUDA_AVAILABLE else "cpu"
 print(f"device: {DEVICE}, cuda_available: {CUDA_AVAILABLE}")
 
 def parse():
+    import sys
     p = argparse.ArgumentParser()
     p.add_argument("--model_name", default="deepseek-ai/deepseek-llm-7b-base")
     p.add_argument("--train_file",  default="data/train.jsonl")
@@ -18,7 +19,12 @@ def parse():
     p.add_argument("--batch_size",  type=int, default=4)
     p.add_argument("--lr",          type=float, default=2e-4)
     p.add_argument("--use_4bit",    action="store_true", default = True)
-    return p.parse_args()
+    p.add_argument("--cache_dir",   default="cache")
+
+    # If running in a notebook or colab, ignore unknown args
+    args, _ = p.parse_known_args()
+    return args
+    # return p.parse_args()
 
 def main():
     args = parse()
