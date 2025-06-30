@@ -32,7 +32,7 @@ def main():
                bnb_4bit_compute_dtype = torch.float16,
                bnb_4bit_quant_type = "nf4")
 
-    tok = AutoTokenizer.from_pretrained(args.model_name, use_fast=True)
+    tok = AutoTokenizer.from_pretrained(args.model_name, use_fast=True, cache_dir=args.cache_dir)
     tok.pad_token = tok.eos_token
 
     base_model = AutoModelForCausalLM.from_pretrained(
@@ -41,7 +41,8 @@ def main():
         offload_folder=None,
         torch_dtype=torch.float16 if CUDA_AVAILABLE else torch.float32,
         quantization_config = bnb_cfg,
-        use_safetensors = True
+        use_safetensors = True,
+        cache_dir=args.cache_dir
         )
 
     if args.use_4bit and CUDA_AVAILABLE:
